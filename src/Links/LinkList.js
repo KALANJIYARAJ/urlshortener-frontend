@@ -34,22 +34,22 @@ function LinkList() {
 
 
   return (
-<div class="row">
+<div className="row">
         {
         links.map((link) => {
         return(
-        <div class="col-lg-4">
-          <div class="card border-secondary mb-3" style={{ maxWidth: "18rem" }}>
-            <div class="card-header">Total Click :{link.count}</div>
-            <div class="card-body text-secondary">
-              <h6 class="card-title">
+        <div className="col-lg-4">
+          <div className="card border-secondary mb-3" style={{ maxWidth: "18rem",height:"18rem" }}>
+            <div className="card-header">Total Click :{link.count}</div>
+            <div className="card-body text-secondary">
+              <h6 className="card-title">
                 <a
-                href={`https://https-urlshortener-backend-onrender-com.onrender.com/${link.shortUrl}`}
-                > https://https-urlshortener-backend-onrender-com.onrender.com/{link.shortUrl}
+                href={`${config.api}/${link.shortUrl}`}
+                > {config.api}/{link.shortUrl}
                 </a>
               </h6>
-              <p class="card-text">{link.longUrl}</p>
-              <button onClick={() => deleteUser(link._id)} className ="btn btn-danger">
+              <p className="card-text">{link.longUrl}</p>
+              <button onClick={() => deleteUser(link._id)} className ="btn btn-danger mt-5">
                         Remove
                       </button>
             </div>
