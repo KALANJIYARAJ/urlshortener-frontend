@@ -1,3 +1,3 @@
 export const config = {
-    api : "http://localhost:3003",
+    api : "https://https-urlshortener-backend-onrender-com.onrender.com",
 }
