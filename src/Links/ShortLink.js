@@ -31,7 +31,7 @@ function ShortLink() {
     <div class="container ">
       <div class="row">
         <div class="col-lg-12 text-center">
-          <h1>URL Shortener</h1>
+          <h1 className="mt-5">URL Shortener</h1>
         </div>
       </div>
 <form onSubmit={formik.handleSubmit}>
