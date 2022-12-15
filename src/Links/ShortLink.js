@@ -1,18 +1,25 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
-import { config } from "./config";
+import React, { useContext } from "react";
+import { config } from "../config";
+import { UserContext } from "../UserContext";
 import LinkList from "./LinkList";
 
 function ShortLink() {
+  const { user} = useContext(UserContext);
+  const { links, setLinks} = useContext(UserContext);
+
+  console.log(user._id);
   const formik = useFormik({
     initialValues: {
-        "longUrl": ""
+        "longUrl": "",
+        "userId":`${user._id}`,
     },
     onSubmit: async (values) => {
       try {
-        const user = await axios.post(`${config.api}/create_link`, values);
+       const newLink = await axios.post(`${config.api}/create_link`, values);
         alert("link created");
+        setLinks([...links,newLink.data])
         formik.resetForm();
       } catch (error) {
         alert("link does't created");

@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { config } from "../config";
+import { UserContext } from "../UserContext";
 
 function Login() {
   const navigate = useNavigate();
+  const { setUser } = useContext(UserContext);
 
   const formik = useFormik({
     initialValues: {
@@ -14,8 +16,9 @@ function Login() {
     },
     onSubmit: async (values) => {
       try {
-        const user =await axios.post(`${config.api}/login`, values);
-        if(user.data.message === 'Success'){
+        const users =await axios.post(`${config.api}/login`, values);
+        if(users.data){
+        setUser(users.data)
         alert("Successfully Login");
         navigate("/shortlink");
       }else{

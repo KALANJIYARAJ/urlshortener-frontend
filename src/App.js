@@ -8,18 +8,21 @@ import CreateAc from "./Login/CreateAc";
 import Forget from "./Login/Forget";
 import ResetPassword from "./Login/ResetPassword";
 import Activation from "./Login/Activation";
-import ShortLink from "./ShortLink";
+import ShortLink from "./Links/ShortLink";
+import Redirect from "./Links/Redirect";
+
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />}></Route>
+        <Route path="/:urlId" element={<Redirect />}></Route>
         <Route path="/accout" element={<CreateAc />}></Route>
         <Route path="/forgot" element={<Forget />}></Route>
         <Route path="/activation/:userId" element={<Activation/>}></Route>
         <Route path="/shortlink" element={<ShortLink />}></Route>
-        <Route path="/reset/:userId" element={<ResetPassword/>}></Route>
+        <Route path="/reset/:userId" element={<ResetPassword/>}></Route>   
       </Routes>
     </BrowserRouter>
   );

@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { config } from './config';
-import { Link, Navigate, useNavigate } from "react-router-dom";
-
+import React, { useContext, useEffect } from 'react'
+import { config } from '../config';
+import { UserContext } from '../UserContext';
 
 function LinkList() {
-    const[links, setLinks] = useState([]);
-    const navigate = useNavigate();
+  const { links, setLinks} = useContext(UserContext);
+    const { user} = useContext(UserContext);
 
     useEffect(() => {
         fetchData();
@@ -14,7 +13,7 @@ function LinkList() {
     
       let fetchData = async () => {
         try {
-          const linkList = await axios.get(`${config.api}/linklist`);
+          const linkList = await axios.get(`${config.api}/linklist/${user._id}`);
           setLinks(linkList.data);
         } catch (error) {
           alert("Error");
@@ -33,17 +32,6 @@ function LinkList() {
     }
   }
 
-  let redirect = async (urlId) =>{
-    try{
-      const redirect = await axios.get(`${config.api}/${urlId}`)  
-      console.log(typeof(redirect.data))
-      alert("Link redirect")
-      navigate("https://pythontutor.com/visualize.html#mode=edit")
-    }
-    catch (error){
-      alert("Link not redirect")
-    }
-  }
 
   return (
 <div class="row">
@@ -55,12 +43,10 @@ function LinkList() {
             <div class="card-header">Total Click :{link.count}</div>
             <div class="card-body text-secondary">
               <h6 class="card-title">
-                <Link
-                  to={`/${link.shortUrl}`}
-                  // target="_blank"
-                ><span onClick={() => redirect(link.shortUrl)}>http://localhost:3000/{link.shortUrl}</span>
-                
-                </Link>
+                <a
+                href={`http://localhost:3003/${link.shortUrl}`}
+                > http://localhost:3003/{link.shortUrl}
+                </a>
               </h6>
               <p class="card-text">{link.longUrl}</p>
               <button onClick={() => deleteUser(link._id)} className ="btn btn-danger">
