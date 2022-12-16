@@ -28,8 +28,8 @@ function Forget() {
 
     onSubmit: async (values) => {
       try {
-       await axios.post(`${config.api}/forgot`, values);
-      alert("Check your email")
+       const user = await axios.post(`${config.api}/forgot`, values);
+      alert(user.data)
       formik.resetForm();
       navigate("/");
       } catch (error) {
