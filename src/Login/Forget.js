@@ -33,7 +33,7 @@ function Forget() {
       formik.resetForm();
       navigate("/");
       } catch (error) {
-        alert("incorrect username");
+        alert("The email id does't not registered");
       }
     },
   });
