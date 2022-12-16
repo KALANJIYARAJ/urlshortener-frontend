@@ -11,7 +11,7 @@ function ShortLink() {
   const { links, setLinks} = useContext(UserContext);
   const navigate = useNavigate();
 
-  console.log(user._id);
+  // console.log(user._id);
   const formik = useFormik({
     initialValues: {
         "longUrl": "",

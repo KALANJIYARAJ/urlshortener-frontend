@@ -17,12 +17,13 @@ function Login() {
     onSubmit: async (values) => {
       try {
         const users =await axios.post(`${config.api}/login`, values);
-        if(users.data){
+        if(users.data.activation == true){
+          // console.log(users.data.activation)
         setUser(users.data)
         alert("Successfully Login");
         navigate("/shortlink");
       }else{
-        alert("incorrect username/password");
+        alert("your account is deactivate check your email and activate your account");
       }
       } catch (error) {
         alert("incorrect username/password");
