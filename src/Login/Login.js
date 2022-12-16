@@ -23,7 +23,7 @@ function Login() {
         alert("Successfully Login");
         navigate("/shortlink");
       }else{
-        alert("your account is deactivate check your email and activate your account");
+        alert("incorrect username/password");
       }
       } catch (error) {
         alert("incorrect username/password");
